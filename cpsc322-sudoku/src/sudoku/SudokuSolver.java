@@ -33,8 +33,31 @@ public class SudokuSolver {
 			{
 				domains[i][j] = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
 				
+				for (int k = 0; k < 9; k++)
+				{
+					if (k == j) continue;
+					
+					toDoArcs.add(new Pair<Pair<Integer, Integer>, Pair<Integer, Integer>>(new Pair<Integer, Integer>(i, j),
+																						  new Pair<Integer, Integer>(i, k)));
+				}
 				
+				for (int k = 0; k < 9; k++)
+				{
+					if (k == i) continue;
+					
+					toDoArcs.add(new Pair<Pair<Integer, Integer>, Pair<Integer, Integer>>(new Pair<Integer, Integer>(i, j),
+																						  new Pair<Integer, Integer>(k, j)));
+				}
+				
+				// TODO: ToDoArcs for Box
 			}
+		}
+		
+		while (!toDoArcs.isEmpty())
+		{
+			Pair<Pair<Integer, Integer>, Pair<Integer, Integer>> arc = toDoArcs.remove(0);
+			int newDomain[] = new int[9];
+			
 		}
 		
 		return board;
