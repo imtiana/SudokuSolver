@@ -13,14 +13,14 @@ import java.lang.Object;
 /**
  * Place for your code.
  */
-public class SudokuSolver {
-
+public class SudokuSolver
+{
 	/**
 	 * @return names of the authors and their student IDs (1 per line).
 	 */
-	public String authors() {
-		// TODO write it;
-		return "NAMES OF THE AUTHORS AND THEIR STUDENT IDs (1 PER LINE)";
+	public String authors()
+	{
+		return " Sae Young Kim    30172092    \n Jihyung Im       60411089";
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class SudokuSolver {
 			@SuppressWarnings("unchecked")
 			Pair<Pair<Integer, Integer>, Pair<Integer, Integer>> arc = 
 					(Pair<Pair<Integer, Integer>, Pair<Integer, Integer>>) toDoArcs.toArray()[0];
-			toDoArcs.remove(arc);	// make sure arc's reference is not removed at this point
+			toDoArcs.remove(arc);
 			
 			Pair<Integer, Integer> thisNode = arc.first;
 			Pair<Integer, Integer> otherNode = arc.second;
