@@ -2,14 +2,12 @@ package sudoku;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.lang.Object;
 
 /**
  * Place for your code.
@@ -175,7 +173,6 @@ public class SudokuSolver
 	{		
 		while (!toDoArcs.isEmpty())
 		{
-			@SuppressWarnings("unchecked")
 			Pair<Pair<Integer, Integer>, Pair<Integer, Integer>> arc = 
 					(Pair<Pair<Integer, Integer>, Pair<Integer, Integer>>) toDoArcs.iterator().next();
 			toDoArcs.remove(arc);
@@ -196,7 +193,6 @@ public class SudokuSolver
 			}
 			
 			int countOfDomainOfThisNodeAfterPruning = domainOfThisNodeThatSatisfiesConstraint.size();
-			
 			if (countOfDomainOfThisNodeAfterPruning != countOfDomainOfThisNodeBeforePruning)
 			{				
 				addArcsToReconsider(arcMap, toDoArcs, thisNode);
@@ -208,14 +204,11 @@ public class SudokuSolver
 			for (int j = 0; j < domains.get(i).size(); j++)
 			{
 				int numberOfDomainValues = domains.get(i).get(j).size();
-				//System.out.println("Solver i: " + i + "    j: " + j + "     Number of values: " + numberOfDomainValues);
 				if (numberOfDomainValues == 0)
 					return;
 				
-				//printDomains(domains);
 				if (numberOfDomainValues > 1)
 				{
-					//System.out.println("Splitting Domain");
 					int midIndex = (int) Math.ceil((double)numberOfDomainValues / 2);
 					List<List<List<Integer>>> copyOfDomains = getCopyOfDomains(domains);
 					List<Integer> valuesOfDomain = copyOfDomains.get(i).get(j);
@@ -246,6 +239,20 @@ public class SudokuSolver
 			}
 		}
 		
+		//printDomains(domains);
+		
+		for (int i = 0; i < domains.size(); i++)
+		{
+			for (int j = 0; j < domains.get(i).size(); j++)
+			{
+				int numberOfDomainValues = domains.get(i).get(j).size();
+				if (numberOfDomainValues != 1)
+				{
+					return;
+				}
+			}
+		}
+		
 		isFound.add(new Integer(0));
 		if (!isFound.isEmpty()) 
 		{
@@ -259,8 +266,8 @@ public class SudokuSolver
 					}
 				}
 			}
-			System.out.println("Found Solution");
-			printDomains(resultDomains);
+//			System.out.println("Found Solution");
+//			printDomains(resultDomains);
 		}
 	}
 	
