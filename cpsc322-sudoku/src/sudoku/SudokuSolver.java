@@ -73,7 +73,47 @@ public class SudokuSolver {
 																						  new Pair<Integer, Integer>(k, j)));
 				}
 				
-				// TODO: ToDoArcs for Box
+				final int firstBoxSize = 3;
+				final int secondBoxSize = 6;
+				
+				int boxRowNumber;
+				int boxColNumber;
+				if (i < firstBoxSize)
+				{
+					boxRowNumber = 0;
+				}
+				else if (i < secondBoxSize)
+				{
+					boxRowNumber = 1;
+				}
+				else
+				{
+					boxRowNumber = 2;
+				}
+				
+				if (j < firstBoxSize)
+				{
+					boxColNumber = 0;
+				}
+				else if (j < secondBoxSize)
+				{
+					boxColNumber = 1;
+				}
+				else
+				{
+					boxColNumber = 2;
+				}
+				
+				for (int r = firstBoxSize * boxRowNumber; r < firstBoxSize * boxRowNumber + firstBoxSize; r++)
+				{
+					for (int c = firstBoxSize * boxColNumber; c < firstBoxSize * boxColNumber + firstBoxSize; c++)
+					{
+						if (r == i && c == j) continue;
+						
+						toDoArcs.add(new Pair<Pair<Integer, Integer>, Pair<Integer, Integer>>(new Pair<Integer, Integer>(i, j),
+																							  new Pair<Integer, Integer>(r, c)));
+					}
+				}
 			}
 		}
 		
@@ -150,6 +190,9 @@ public class SudokuSolver {
 				for (int k = 0; k < domainsTemp.size(); k++)
 				{
 					System.out.print(domainsTemp.get(k));
+					
+					if (domainsTemp.size() == 1)
+						board[i][j] = domainsTemp.get(k);
 				}
 				
 				System.out.print(" ");
