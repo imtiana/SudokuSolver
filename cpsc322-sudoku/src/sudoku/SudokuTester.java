@@ -74,7 +74,7 @@ public class SudokuTester {
 	 */
 	private static void test(SudokuSolver acSolver, String boardName, boolean hasSolution, boolean verbose) throws IOException {
 		long time = System.currentTimeMillis();
-		try {
+//		try {
 			System.out.println("Board '" + boardName + "': ");
 			int[][] problem = SudokuUtil.readInBoard(boardName + ".sud", 9);
 			if (verbose)
@@ -87,9 +87,11 @@ public class SudokuTester {
 				System.out.println(match(solution, SudokuUtil.readInBoard(boardName + "Solution.sud", 9)) ? "CORRECT" : "INCORRECT");
 			else
 				System.out.println("ERROR: board '" + boardName + "' is not a valid Sudoku. Exception should have been thrown.");
-		} catch (Exception e) {
-			System.out.println("Board '" + boardName + "': crashed " + e);
-		}
+//		}
+//		catch (Exception e) 
+//		{
+//			System.out.println("Board '" + boardName + "': crashed " + e);
+//		}
 		System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000 + " seconds\n");
 	}
 
